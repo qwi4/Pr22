@@ -1,0 +1,129 @@
+﻿<Window x:Class="Pr22.Pages.AddRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pr22.Pages"
+        mc:Ignorable="d"
+        Title="Добавление услуги" 
+        Height="200" 
+        Width="380"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <ControlTemplate x:Key="ButtonTemplate1" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" 
+                    Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    SnapsToDevicePixels="true"
+                    CornerRadius="20">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="..\fonn.jpeg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Клиент"
+               Grid.Row="0"
+               Grid.Column="0"
+               Margin="5"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Style="{StaticResource lbReg}"/>
+        <ComboBox x:Name="txtbxClient"
+                 Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="5"
+                 Padding="5"
+                 VerticalContentAlignment="Center"
+                 />
+
+        <Label Content="Услуга"
+               Grid.Row="1"
+               Grid.Column="0"
+               Margin="5"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Style="{StaticResource lbReg}"/>
+        <ComboBox x:Name="txtbxService"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="5"
+                 Padding="5"
+                 VerticalContentAlignment="Center"
+                 />
+
+        <Label Content="Дата"
+               Grid.Row="2"
+               Grid.Column="0"
+               Margin="5"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Style="{StaticResource lbReg}"/>
+        <DatePicker x:Name="dpDate"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="5"
+                 Padding="5"
+                 VerticalContentAlignment="Center"/>
+
+        <Button x:Name="btnAddService" 
+                Content="Добавить"  
+                Margin="5" 
+                Grid.Row="5"
+                Grid.Column="0"
+                Template="{DynamicResource ButtonTemplate1}"
+                Style="{StaticResource btnReg}"
+                Click="btnAddService_Click"/>
+        <Button x:Name="btnCancel" 
+                Content="Отменить" 
+                Margin="5" 
+                Grid.Row="5"
+                Grid.Column="1"
+                BorderBrush="#FF763E3E"
+                Style="{StaticResource btnReg}"
+                Template="{DynamicResource ButtonTemplate1}"
+                Click="btnCancel_Click"/>
+    </Grid>
+</Window>
